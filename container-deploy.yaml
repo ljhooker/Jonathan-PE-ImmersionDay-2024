@@ -15,7 +15,7 @@ metadata:
   name: webby
   namespace: pedemo-dyzk-user0
 spec:
-  replicas: 3
+  replicas: 4
   selector:
     matchLabels:
       app: webby
