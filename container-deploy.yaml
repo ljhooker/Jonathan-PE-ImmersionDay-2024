@@ -12,7 +12,7 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: webby
+  name: webby
   namespace: pedemo-dyzk-user0
 spec:
   replicas: 3
@@ -55,12 +55,12 @@ spec:
   ports:
     - port: 80
       targetPort: 9999
-
+      
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-name: webby
+  name: webby
   namespace: pedemo-dyzk-user0
 spec:
   tls:
@@ -76,7 +76,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: condb
+  name: condb
   namespace: pedemo-dyzk-user0
 spec:
   selector:
@@ -88,19 +88,20 @@ spec:
         app: condb
     spec:
       terminationGracePeriodSeconds: 10
-        containers:
-        - name: condb
-          image: registry.gitlab.com/ignw1/dvs-code/pedemo/rhos-pe-immersion-day/condb:v1.1
-          imagePullPolicy: Always
-          resources:
-            requests:
-              cpu: 200m
-              memory: 128Mi
-            limits:
-              cpu: 400m
-              memory: 256Mi
-        imagePullSecrets:
-          - name: gitlab-pull-secret
+      containers:
+      - name: condb
+        image: registry.gitlab.com/ignw1/dvs-code/pedemo/rhos-pe-immersion-day/condb:v1.1
+        imagePullPolicy: Always
+        
+        resources:
+          requests:
+            cpu: 200m
+            memory: 128Mi
+          limits:
+            cpu: 400m
+            memory: 256Mi
+      imagePullSecrets:
+        - name: gitlab-pull-secret
 
 ---
 apiVersion: v1
